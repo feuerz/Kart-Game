@@ -1,0 +1,86 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    height: 100vh;
+    background-image: url('img/Carrera.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    justify-content: center;
+    flex-direction: column;
+  }
+  #carrera{
+    display: flex;
+    height: 85vh;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  #pressStart{
+    display: flex;
+    background-color: red;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+  }
+  #pressStart img{
+    margin-top: 10%;
+    width: 20%;
+    position: absolute;
+  }
+  #pressStart img:nth-last-child(-n+3) {
+    margin-top: 10%;
+    width: 10%;
+    position: absolute;
+  }
+ 
+  @keyframes parpadeo {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  #pressStart img:nth-child(-n+4) {
+    margin-top: 10%;
+    width: 50%;
+    position: absolute;
+    animation: parpadeo 1s ease-in-out infinite; 
+  }
+
+  .tortuga{
+    display: flex;
+   
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    justify-content: center;
+  }
+.tortuGaimg img{
+    width: 10%;
+    margin-left:1%;
+}
+#tortuga1, #tortuga2, #tortuga3, #tortuga4{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+#imagenStart3 img{
+  width: 50%;
+}
+#newGame{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: hidden;
+  margin-top: 3%;
+}
+#newGame img{
+  width: 20%;
+}
