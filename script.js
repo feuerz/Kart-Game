@@ -1,4 +1,6 @@
 var podiunm = [];
+let fondoPosicion = 0;
+let tortugaMasRapidaIndex = -1;
 function start() {
   let strart = document.getElementById("imagenStart");
   strart.setAttribute("hidden", true);
@@ -29,7 +31,7 @@ function start() {
   clearInterval(intervalID);
 }
 function ganador(ganador) {
-  console.log(ganador);
+  // console.log(ganador);
   let uno = document.getElementById("ganador1");
   let dos = document.getElementById("ganador2");
   let tres = document.getElementById("ganador3");
@@ -38,76 +40,81 @@ function ganador(ganador) {
   switch (ganador) {
     case "tortu1":
       uno.hidden = false;
-
       break;
     case "tortu2":
-      console.log("Seleccionaste la tortuga 2");
       dos.hidden = false;
       break;
     case "tortu3":
       tres.hidden = false;
-      // Puedes agregar más acciones específicas para "tortu3" aquí
       break;
     case "tortu4":
       cuatro.hidden = false;
-      // Puedes agregar más acciones específicas para "tortu4" aquí
       break;
     default:
-      console.log("Tortuga no reconocida");
-    // Puedes agregar acciones para el caso por defecto (si no coincide con ninguno de los casos anteriores)
   }
   again.hidden = false;
 }
-async function carrera(tortuga, velocidad, penalizacion) {
+async function carrera(tortuga, velocidad, penalizacion, moverFondoExtra) {
   let posicionTortu = 0;
-  console.log(tortuga);
-  console.log("Esto es la velocidad", velocidad);
-  console.log("Esto es la penalizacion", penalizacion);
+  const pasosTotales = 20;
+  const incrementoPorPaso = 80 / pasosTotales;
+
   return new Promise((resolver) => {
     setTimeout(() => {
       let intervalo = setInterval(() => {
-        resolver("Resuelvo en 3s");
         if (posicionTortu < 80) {
-          posicionTortu += 10;
+          posicionTortu += incrementoPorPaso;
           tortuga.style.marginLeft = posicionTortu + "%";
+
+          if (moverFondoExtra) {
+            fondoPosicion += 4;
+            document.body.style.backgroundPosition = `${fondoPosicion}% center`;
+          }
         } else {
           podiunm.push(tortuga);
-          console.log(podiunm);
           clearInterval(intervalo);
+          resolver();
         }
-        if (podiunm.length == 3 && posicionTortu >=70) {
+
+        if (podiunm.length === 3 && posicionTortu >= 70) {
           ganador(podiunm[0].id);
         }
-      }, 11000 - velocidad);
+      }, velocidad);
     }, penalizacion * 1000);
   });
 }
+
 function obtenerIds() {
   let tortuga1 = document.getElementById("tortu1");
-  var tortuga2 = document.getElementById("tortu2");
-  var tortuga3 = document.getElementById("tortu3");
-  var tortuga4 = document.getElementById("tortu4");
-  let ids = [];
-  ids.push(tortuga1, tortuga2, tortuga3, tortuga4);
-  console.log(tortuga1);
-  console.log(ids);
-  return ids;
+  let tortuga2 = document.getElementById("tortu2");
+  let tortuga3 = document.getElementById("tortu3");
+  let tortuga4 = document.getElementById("tortu4");
+  return [tortuga1, tortuga2, tortuga3, tortuga4];
 }
 
 async function ejecutar() {
+  fondoPosicion = 0;
+  document.body.style.backgroundPosition = `${fondoPosicion}% center`;
+  podiunm = [];
+
   let ids = obtenerIds();
-  console.log(ids);
-  let velocidad = obtenerVelocidad();
-  let penalizacion = obtenerPenalizacion();
-  /*carrera(ids[0], 8000, penalizacion[0]);
-  carrera(ids[1], 10000, penalizacion[1]);
-  carrera(ids[2], 7000, penalizacion[2]);
-  carrera(ids[3], 9000, penalizacion[3]);*/
-  carrera(ids[0], velocidad[0] * 1000, penalizacion[0]);
-  carrera(ids[1], velocidad[1] * 1000, penalizacion[1]);
-  carrera(ids[2], velocidad[2] * 1000, penalizacion[2]);
-  carrera(ids[3], velocidad[3] * 1000, penalizacion[3]);
+  let velocidades = obtenerVelocidad();
+  let penalizaciones = obtenerPenalizacion();
+
+  tortugaMasRapidaIndex = encontrarTortugaMasRapida(
+    velocidades,
+    penalizaciones
+  );
+  let carreras = [];
+  for (let i = 0; i < 4; i++) {
+    const velocidadMs = 1000 - (velocidades[i] - 1) * (800 / 9);
+    const esMasRapida = i === tortugaMasRapidaIndex;
+    carreras.push(carrera(ids[i], velocidadMs, penalizaciones[i], esMasRapida));
+  }
+
+  await Promise.all(carreras);
 }
+
 obtenerIds();
 
 function obtenerVelocidad() {
@@ -123,8 +130,6 @@ function obtenerVelocidad() {
       contadorVelocidades++;
     }
   } while (contadorVelocidades != 4);
-
-  console.log(velocidades);
   return velocidades;
 }
 function obtenerPenalizacion() {
@@ -135,9 +140,30 @@ function obtenerPenalizacion() {
     penalizacion.push(numeroAleatorio);
     contadorPenalizacion++;
   } while (contadorPenalizacion != 4);
-  console.log(penalizacion);
   return penalizacion;
 }
 window.onload = function () {
   document.getElementById("pressStart").addEventListener("click", start);
 };
+
+function moverFondoPaso(esRapida) {
+  if (esRapida) {
+    fondoPosicion += 40; // mueve el fondo solo si es la tortuga más rápida
+    document.body.style.backgroundPosition = `${fondoPosicion}% center`;
+  }
+}
+
+function encontrarTortugaMasRapida(velocidades, penalizaciones) {
+  let minTiempo = Infinity;
+  let indexMasRapida = 0;
+
+  for (let i = 0; i < velocidades.length; i++) {
+    const tiempoTotal = velocidades[i] + penalizaciones[i];
+    if (tiempoTotal < minTiempo) {
+      minTiempo = tiempoTotal;
+      indexMasRapida = i;
+    }
+  }
+  // console.log("Índice tortuga más rápida:", indexMasRapida);
+  return indexMasRapida;
+}
