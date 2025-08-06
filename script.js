@@ -66,8 +66,9 @@ async function carrera(tortuga, velocidad, penalizacion, moverFondoExtra) {
           posicionTortu += incrementoPorPaso;
           tortuga.style.marginLeft = posicionTortu + "%";
 
-          if (moverFondoExtra) {
-            fondoPosicion += 4;
+          if (moverFondoExtra && fondoPosicion < 70) {
+            // Solo mueve si no ha llegado al límite
+            fondoPosicion += 10;
             document.body.style.backgroundPosition = `${fondoPosicion}% center`;
           }
         } else {
@@ -145,13 +146,6 @@ function obtenerPenalizacion() {
 window.onload = function () {
   document.getElementById("pressStart").addEventListener("click", start);
 };
-
-function moverFondoPaso(esRapida) {
-  if (esRapida) {
-    fondoPosicion += 40; // mueve el fondo solo si es la tortuga más rápida
-    document.body.style.backgroundPosition = `${fondoPosicion}% center`;
-  }
-}
 
 function encontrarTortugaMasRapida(velocidades, penalizaciones) {
   let minTiempo = Infinity;
