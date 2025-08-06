@@ -67,8 +67,7 @@ async function carrera(tortuga, velocidad, penalizacion, moverFondoExtra) {
           tortuga.style.marginLeft = posicionTortu + "%";
 
           if (moverFondoExtra && fondoPosicion < 70) {
-            // Solo mueve si no ha llegado al límite
-            fondoPosicion += 10;
+            fondoPosicion += 15;
             document.body.style.backgroundPosition = `${fondoPosicion}% center`;
           }
         } else {
