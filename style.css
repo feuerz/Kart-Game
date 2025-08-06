@@ -1,6 +1,40 @@
 * {
   box-sizing: border-box;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#logoGame {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  pointer-events: none;
+
+}
+
+#logoGame img {
+  width: 200px; /* tamaño fijo */
+  max-width: 90vw; /* que no sea más grande que la ventana */
+  height: auto;
+  animation: pulseBlink 2s ease-in-out infinite;
+}
+
+@keyframes pulseBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
 
 body {
   display: flex;
@@ -64,7 +98,10 @@ body {
   width: 100%;
   height: 100%;
   justify-content: center;
+  display: none;
 }
+
+
 
 .tortuGaimg img {
   width: 10%;
@@ -147,6 +184,114 @@ body {
 
   #newGame img {
     width: 40%;
+  }
+}
+
+/* Tablet apaisado (entre 768px y 1024px y en horizontal) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  #pressStart img {
+    width: 25%;
+  }
+
+  #pressStart img:nth-last-child(-n+3) {
+    width: 12%;
+  }
+
+  #pressStart img:nth-child(-n+4) {
+    width: 50%;
+  }
+
+  .tortuGaimg img {
+    width: 8%;
+  }
+
+  #imagenStart3 img {
+    width: 50%;
+  }
+
+  #newGame img {
+    width: 25%;
+  }
+}
+
+/* Móvil apaisado (menos de 768px y en horizontal) */
+@media (max-width: 767px) and (orientation: landscape) {
+  #pressStart img {
+    width: 35%;
+  }
+
+  #pressStart img:nth-last-child(-n+3) {
+    width: 18%;
+  }
+
+  #pressStart img:nth-child(-n+4) {
+    width: 60%;
+  }
+
+  .tortuGaimg img {
+    width: 10%;
+  }
+
+  #imagenStart3 img {
+    width: 60%;
+  }
+
+  #newGame img {
+    width: 35%;
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background-color: #000;
+  color: #0f0;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.menu-retro {
+  text-align: center;
+  padding: 2rem;
+  border: 4px solid rgb(255, 238, 0);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgb(255, 123, 0);
+  animation: flicker 1.5s infinite;
+}
+
+.menu-retro h1 {
+  margin-bottom: 2rem;
+  color: #f00;
+  text-shadow: 0 0 10px #f00;
+}
+
+.menu-retro ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-retro li {
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-retro li:hover {
+  color: yellow;
+  text-shadow: 0 0 5px yellow;
+  transform: scale(1.1);
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.3;
   }
 }
 
