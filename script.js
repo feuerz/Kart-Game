@@ -178,6 +178,13 @@ window.onload = function () {
     document.removeEventListener("click", listenerAnyClick);
   };
   document.addEventListener("click", listenerAnyClick);
+  document.getElementById("configGame").addEventListener("click", function() {
+    let menuRetro = document.getElementById("menuRetro");
+    menuRetro.style.display = "none";
+    let menuConfigGame = document.getElementById("configuracionJuego");
+    menuConfigGame.hidden=false;
+  });
+
 };
 
 function elegirJugadores(){
@@ -185,5 +192,17 @@ function elegirJugadores(){
   logo.style.display="none";
   let menu =document.getElementById("menuRetro");
   menu.hidden=false;
+  
+}
+function inciarCarrera(){
+  let menu =document.getElementById("configuracionJuego");
+  menu.style.display="none";
+  let pressStart = document.getElementById("pressStart");
+  pressStart.style.display="";
+  const tortugas = document.getElementsByClassName("tortuga");
+  for (let i = 0; i < tortugas.length; i++) {
+  tortugas[i].classList.remove("oculta"); // Elimina la clase que las oculta
+  }
 
 }
+

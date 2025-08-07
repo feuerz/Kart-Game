@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="logoGame">
-      <img src="img/ChatGPT Image 6 ago 2025, 16_33_42.png" alt="" id="logo"/>
-    </div>
-    <div id="menuRetro" class="menu-retro" hidden>
-      <h1>🏁 TURTLE RACE</h1>
-      <ul>
-        <li>▶ Start Game</li>
-        <li>Options</li>
-        <li>Exit</li>
-      </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div id="logoGame">
+    <img src="img/tortugaRetro.png" alt="" id="logo" />
+  </div>
+  <div id="menuRetro" class="menu-retro" hidden>
+    <h1>🏁 TURTLE RACE</h1>
+    <ul>
+      <li id="configGame">Start Game</li>
+      <li>Reset Game</li>
+    </ul>
+  </div>
+  <div class="menu-retro" id="configuracionJuego" hidden>
+    <h2>Configuración del Juego</h2>
+
+    <label for="numJugadores">Número de jugadores:</label>
+    <select id="numJugadores" onchange="actualizarJugadores()">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4" selected>4</option>
+    </select>
+
+    <div id="jugadoresContainer">
+      <!-- Campos dinámicos -->
     </div>
 
-    <div id="pressStart" style="display: none;">
-      <img src="img/Ganador1.png" alt="" id="ganador1" hidden />
-      <img src="img/Ganador2.png" alt="" id="ganador2" hidden />
-      <img src="img/Ganador3.png" alt="" id="ganador3" hidden />
-      <img src="img/Ganador4.png" alt="" id="ganador4" hidden />
-      <img
-        src="img/fe9eebde5e19b66192281164142359e4.gif"
-        alt=""
-        id="imagenStart"
-      />
-      <img src="img/Llamas.png" alt="" id="imagenStartLlamas" hidden />
-      <img src="img/1.png" alt="" id="imagenStart1" hidden />
-      <img src="img/2.png" alt="" id="imagenStart2" hidden />
-      <img src="img/3.png" alt="" id="imagenStart3" hidden />
-    </div>
-    <div id="carrera">
-      <div class="tortuga">
-        <div id="tortuga1" class="tortuGaimg">
-          <img
-            src="img/tortu1.png"
-            alt=""
-            id="tortu1"
-          />
-        </div>
-      </div>
-      <div class="tortuga">
-        <div id="tortuga2" class="tortuGaimg">
-          <img
-            src="img/tortu2.png"
-            alt=""
-            id="tortu2"
-          />
-        </div>
-      </div>
-      <div class="tortuga">
-        <div id="tortuga3" class="tortuGaimg">
-          <img
-            src="img/tortu3.png"
-            alt=""
-            id="tortu3"
-          />
-        </div>
-      </div>
-      <div class="tortuga">
-        <div id="tortuga4" class="tortuGaimg">
-          <img
-            src="img/Tortu4.png"
-            alt=""
-            id="tortu4"
-          />
-        </div>
+    <button onclick="inciarCarrera()">¡Jugar!</button>
+  </div>
+
+  <div id="pressStart" style="display: none;">
+    <img src="img/Ganador1.png" alt="" id="ganador1" hidden />
+    <img src="img/Ganador2.png" alt="" id="ganador2" hidden />
+    <img src="img/Ganador3.png" alt="" id="ganador3" hidden />
+    <img src="img/Ganador4.png" alt="" id="ganador4" hidden />
+    <img src="img/fe9eebde5e19b66192281164142359e4.gif" alt="" id="imagenStart" />
+    <img src="img/Llamas.png" alt="" id="imagenStartLlamas" hidden />
+    <img src="img/1.png" alt="" id="imagenStart1" hidden />
+    <img src="img/2.png" alt="" id="imagenStart2" hidden />
+    <img src="img/3.png" alt="" id="imagenStart3" hidden />
+  </div>
+  <div id="carrera">
+    <div class="tortuga oculta">
+      <div id="tortuga1" class="tortuGaimg">
+        <img src="img/tortu1.png" alt="" id="tortu1" />
       </div>
     </div>
-    <a href="index.html"><div id="newGame">
+    <div class="tortuga oculta">
+      <div id="tortuga2" class="tortuGaimg">
+        <img src="img/tortu2.png" alt="" id="tortu2" />
+      </div>
+    </div>
+    <div class="tortuga oculta">
+      <div id="tortuga3" class="tortuGaimg">
+        <img src="img/tortu3.png" alt="" id="tortu3" />
+      </div>
+    </div>
+    <div class="tortuga oculta">
+      <div id="tortuga4" class="tortuGaimg">
+        <img src="img/Tortu4.png" alt="" id="tortu4" />
+      </div>
+    </div>
+  </div>
+  <a href="index.html">
+    <div id="newGame">
       <img src="img/new-game.gif" alt="" id="again" hidden />
-    </div></a>
-  </body>
+    </div>
+  </a>
+</body>
+
 </html>
