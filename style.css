@@ -10,7 +10,7 @@ html, body {
 
 #logoGame {
   position: fixed;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -19,7 +19,7 @@ html, body {
 }
 
 #logoGame img {
-  width: 200px; /* tamaño fijo */
+  width: 500px; /* tamaño fijo */
   max-width: 90vw; /* que no sea más grande que la ventana */
   height: auto;
   animation: pulseBlink 2s ease-in-out infinite;
@@ -97,7 +97,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .tortuga.oculta {
@@ -108,19 +108,24 @@ body {
 
 
 .tortuGaimg img {
-  width: 10%;
+  width: 7%;
   margin-left: 1%;
+}
+.tortuGaimg{
+  display: flex;
+  flex-direction: column;
 }
 
 #tortuga1, #tortuga2, #tortuga3, #tortuga4 {
   display: flex;
   width: 100%;
-  align-items: center;
+  /* align-items: center; */
 }
 
 #imagenStart3 img {
   width: 50%;
 }
+
 
 #newGame {
   display: flex;
@@ -162,6 +167,7 @@ body {
   #newGame img {
     width: 30%;
   }
+  
 }
 
 /* Móvil (menos de 768px) */
@@ -216,6 +222,12 @@ body {
   #newGame img {
     width: 25%;
   }
+  #logoGame img {
+  width: 250px; /* tamaño fijo */
+  max-width: 90vw; /* que no sea más grande que la ventana */
+  height: auto;
+  animation: pulseBlink 2s ease-in-out infinite;
+}
 }
 
 /* Móvil apaisado (menos de 768px y en horizontal) */
@@ -305,6 +317,23 @@ body {
     opacity: 0.3;
   }
 } */
+
+#jugadoresContainer input {
+  font-family: 'Press Start 2P', cursive; /* o la fuente retro que estés usando */
+  background-color: #000;
+  color: #0f0;
+  border: 2px solid #ff0;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.playername{
+  color: red;
+  width: 10%;
+  font-size: 1rem;
+  text-align: center;
+}
 
 
 
